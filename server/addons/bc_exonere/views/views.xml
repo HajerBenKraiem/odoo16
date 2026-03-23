@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_fiscal_exo" model="ir.ui.view">
+        <field name="name">res.par;tner.form.inherit.fiscal.exo</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="num_exoneration"/>
+                <field name="date_debut_exoneration"/>
+                <field name="date_fin_exoneration"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_move_form_inherit_fiscal" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.fiscal</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_num_exoneration"
+                       attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                       placeholder="N° Exonération Client"/>
+                <field name="partner_date_debut_exoneration"
+                       attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                       readonly="1"/>
+                <field name="partner_date_fin_exoneration"
+                       attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                       readonly="1"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+
