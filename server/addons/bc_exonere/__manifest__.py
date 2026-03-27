@@ -3,20 +3,28 @@
     'name': "bc_exonere",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+       Gestion des factures exonérées de TVA et export conforme aux normes fiscales tunisiennes""",
 
     'description': """
-        Long description of module's purpose
+       Module de gestion des factures exonérées de TVA sous Odoo.
+
+Fonctionnalités principales :
+- Gestion des informations d’exonération (numéro, dates)
+- Contrôle automatique de la TVA pour les clients exonérés
+- Vérification de la validité des dates d’exonération
+- Génération d’un fichier texte (EF / DF / TF) conforme aux exigences fiscales tunisiennes
+- Export téléchargeable directement depuis la facture
+
+Ce module permet d’assurer la conformité réglementaire des entreprises travaillant avec des clients exonérés.
     """,
 
-    'author': "My Company",
+    'author': "OumaimaAbida & HajerBenKraiem",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Accounting',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
