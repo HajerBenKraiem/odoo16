@@ -57,21 +57,23 @@ class AccountMove(models.Model):
                 move.date_debut_exoneration = move.partner_id.date_debut_exoneration
                 move.date_fin_exoneration = move.partner_id.date_fin_exoneration
 #validation facture
+
     def action_post(self):
         for move in self:
-            if move.num_exoneration:
-                if move.date_debut_exoneration and move.date_fin_exoneration:
-                    #vjjv
-                    if (move.date_debut_exoneration > move.invoice_date or
-                            move.date_fin_exoneration < move.invoice_date):
-                        raise ValidationError(
-                            "Il faut vérifier la date de facturation"
-                        )
-                else: raise ValidationError(
-                                "Il faut définir les dates fin et début d'exonération"
+            if move.move_type in ['out_invoice', 'in_invoice']:
+                if move.num_exoneration:
+                    if move.date_debut_exoneration and move.date_fin_exoneration:
+                        if (not move.invoice_date or
+                                move.date_debut_exoneration > move.invoice_date or
+                                move.date_fin_exoneration < move.invoice_date):
+                            raise ValidationError(
+                                "Il faut vérifier la date de facturation"
                             )
+                    else:
+                        raise ValidationError(
+                            "Il faut définir les dates fin et début d'exonération"
+                        )
         return super(AccountMove, self).action_post()
-
         # 4. EXPORT TXT (CDC)
         # ========================
 
